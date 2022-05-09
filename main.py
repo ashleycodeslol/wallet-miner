@@ -1,5 +1,4 @@
 from concurrent.futures import thread
-import requests 
 import random
 import string
 import time
