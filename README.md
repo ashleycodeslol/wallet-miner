@@ -1,4 +1,4 @@
-# fake-wallet-miner
+# Wallet-Miner
 - A fake wallet miner using python
 
 # Requirements
