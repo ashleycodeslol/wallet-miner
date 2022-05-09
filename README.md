@@ -1,5 +1,5 @@
 # Wallet-Miner
-- A fake wallet miner using python
+      - A fake wallet miner using python
 
 # Requirements
      - Python 3.9
