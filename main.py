@@ -12,7 +12,7 @@ valid_counter = 0
 
 
 def random_wallet(length, color, text):
-    letters = string.ascii_letters
+    letters = string.ascii_letters + string.digits
     result_str = ''.join(random.choice(letters) for i in range(length))
     print(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}WALLET ADRESS{Fore.RESET}   :   {color} 0x{result_str} {Fore.RESET}{color} {Fore.MAGENTA} [{Fore.RESET} {text} {Fore.MAGENTA}] {Fore.RESET}")
 
@@ -37,11 +37,11 @@ def main():
     for i in counter:
         counter.append(i + 1)
         for a in range (1):
-            (random_wallet(35, Fore.RED, "NOT VALID"))
+            (random_wallet(42, Fore.RED, "NOT VALID"))
             os.system(f"title Wallet checked : {i} / Valid found Wallet : {valid_counter}")
 
         if random.random() < percentage_chance:
-            (random_wallet(35, Fore.GREEN, "  VALID  "))
+            (random_wallet(42, Fore.GREEN, "  VALID  "))
             valid_counter += 1
             os.system(f"title Wallet checked : {i} / Valid found Wallet : {valid_counter}")
             time.sleep(0.01)
