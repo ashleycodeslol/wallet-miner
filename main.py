@@ -41,13 +41,14 @@ def main():
             os.system(f"title Wallet checked : {i} / Valid found Wallet : {valid_counter}")
 
         if random.random() < percentage_chance:
+            random_btc = str(random_btc)
             (random_wallet(42, Fore.GREEN, "  VALID  "))
             valid_counter += 1
             os.system(f"title Wallet checked : {i} / Valid found Wallet : {valid_counter}")
             time.sleep(0.01)
-            print(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}You mined{Fore.RESET}       :    {Fore.GREEN}{random_btc} BTC{Fore.RESET}")
+            print(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}You mined{Fore.RESET}       :    {Fore.GREEN}{random_btc[:-13]} BTC{Fore.RESET}")
             time.sleep(0.5)
-            print(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}Transaction{Fore.RESET}     :    {Fore.GREEN}{random_btc} BTC{Fore.RESET}            {Fore.MAGENTA}[{Fore.RESET} ADDED TO YOUR WALLET {Fore.MAGENTA}] \n{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}Please wait...{Fore.RESET}")
+            print(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}Transaction{Fore.RESET}     :    {Fore.GREEN}{random_btc[:-13]} BTC{Fore.RESET}                                  {Fore.MAGENTA}[{Fore.RESET} ADDED TO YOUR WALLET {Fore.MAGENTA}] \n{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}Please wait...{Fore.RESET}")
             time.sleep(3.5)
             time.sleep(5)
             asker = str(input(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}Do you want to relunch ? : [ Y / N ] : {Fore.RESET}"))
