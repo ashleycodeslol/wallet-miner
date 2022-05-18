@@ -27,11 +27,11 @@ def main():
                                             |_____|__,|_|_|___|_|    |_|_|_|_|_|_|___|_| 
     """
 
-    random_btc = random.uniform(0.5, 1)
+    random_ETH = random.uniform(0.5, 1)
     print(f" {Fore.LIGHTMAGENTA_EX} {main_ascii} {Fore.RESET}")
     wallet_adress = str(input(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}Your Wallet Adress  {Fore.RESET} :   "))
 
-    percentage_chance = 1 # The smaller the number the less likely you are to find a valid, ex : 0.01 = more chance than 0.000000000000001
+    percentage_chance = 0.001 # The smaller the number the less likely you are to find a valid, ex : 0.01 = more chance than 0.000000000000001
     counter = [1]
 
     for i in counter:
@@ -41,14 +41,14 @@ def main():
             os.system(f"title Wallet checked : {i} / Valid found Wallet : {valid_counter}")
 
         if random.random() < percentage_chance:
-            random_btc = str(random_btc)
+            random_ETH = str(random_ETH)
             (random_wallet(42, Fore.GREEN, "  VALID  "))
             valid_counter += 1
             os.system(f"title Wallet checked : {i} / Valid found Wallet : {valid_counter}")
             time.sleep(0.01)
-            print(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}You mined{Fore.RESET}       :    {Fore.GREEN}{random_btc[:-13]} BTC{Fore.RESET}")
+            print(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}You mined{Fore.RESET}       :    {Fore.GREEN}{random_ETH[:-13]} ETH{Fore.RESET}")
             time.sleep(0.5)
-            print(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}Transaction{Fore.RESET}     :    {Fore.GREEN}{random_btc[:-13]} BTC{Fore.RESET}                                  {Fore.MAGENTA}[{Fore.RESET} ADDED TO YOUR WALLET {Fore.MAGENTA}] \n{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}Please wait...{Fore.RESET}")
+            print(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}Transaction{Fore.RESET}     :    {Fore.GREEN}{random_ETH[:-13]} ETH{Fore.RESET}                                  {Fore.MAGENTA}[{Fore.RESET} ADDED TO YOUR WALLET {Fore.MAGENTA}] \n{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}Please wait...{Fore.RESET}")
             time.sleep(3.5)
             time.sleep(5)
             asker = str(input(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}Do you want to relunch ? : [ Y / N ] : {Fore.RESET}"))
