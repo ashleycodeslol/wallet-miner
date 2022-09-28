@@ -1,64 +1,117 @@
-from concurrent.futures import thread
-import random
-import string
+#setup
 import time
-from colorama import *
+import random
+import colorama 
+import ctypes
 import os
+from colorama import Fore, Back, Style
+colorama.init(autoreset=True)
+#functions
+ctypes.windll.kernel32.SetConsoleTitleW("wallet miner")
+
+def g(rolls):
+	data = "qwertyuioplkjhgfdsazxcvbnm1234567890QWERTYUIOPLKJHGFDSAZXCVBNM"
+	result = ""
+	while rolls >= 1:
+		c = random.choice(data)
+		result = c + result
+		rolls = rolls - 1
+	return result
+
+#interface
+print("██╗    ██╗ █████╗ ██╗     ██╗     ███████╗████████╗    ███╗   ███╗██╗███╗   ██╗███████╗██████╗     ██╗   ██╗██████╗ ")
+print("██║    ██║██╔══██╗██║     ██║     ██╔════╝╚══██╔══╝    ████╗ ████║██║████╗  ██║██╔════╝██╔══██╗    ██║   ██║╚════██╗")
+print("██║ █╗ ██║███████║██║     ██║     █████╗     ██║       ██╔████╔██║██║██╔██╗ ██║█████╗  ██████╔╝    ██║   ██║ █████╔╝")
+print("██║███╗██║██╔══██║██║     ██║     ██╔══╝     ██║       ██║╚██╔╝██║██║██║╚██╗██║██╔══╝  ██╔══██╗    ╚██╗ ██╔╝██╔═══╝ ")
+print("╚███╔███╔╝██║  ██║███████╗███████╗███████╗   ██║       ██║ ╚═╝ ██║██║██║ ╚████║███████╗██║  ██║     ╚████╔╝ ███████╗")
+print(" ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝   ╚═╝       ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝      ╚═══╝  ╚══════╝")                                                                                                                                                                                                                                                                                                                             
+print("")       
+print("color list: 'white', 'blue', 'red', 'green', 'cyan', 'purple', 'yellow' ")
+print("")
+print("         1st    2nd      1st")
+print("format: 'type' |0x64| 'balence' ")
+print("")
+n = input("enter the 1st color you want to use here:")  #asking for first color
+if n == "blue":
+	col_ur = colorama.Fore.BLUE
+elif n == "yellow":
+	col_ur = colorama.Fore.YELLOW
+elif n == "white":
+	col_ur = colorama.Fore.WHITE
+elif n == "red":
+	col_ur = colorama.Fore.RED       #seclecting second color
+elif n == "purple":
+	col_ur = colorama.Fore.MAGENTA
+elif n == "cyan":
+	col_ur = colorama.Fore.CYAN
+elif n == "green":
+	col_ur = colorama.Fore.GREEN
+else:
+	print("Input not valid, defaulting to white.")
+	col_ur = colorama.Fore.WHITE
+
+b = input("enter the 2nd color you want to use here:")   #asking for second color
+#-----------------------------------------
+if b == "blue":
+	col_ur2 = colorama.Fore.BLUE
+elif b == "yellow":
+	col_ur2 = colorama.Fore.YELLOW
+elif b == "white":
+	col_ur2 = colorama.Fore.WHITE
+elif b == "red":
+	col_ur2 = colorama.Fore.RED        #selecting second color
+elif b == "purple":
+	col_ur2 = colorama.Fore.MAGENTA
+elif b == "cyan":
+	col_ur2 = colorama.Fore.CYAN
+elif b == "green":
+	col_ur2 = colorama.Fore.GREEN
+else:
+	print("Input not valid, defaulting to white.")
+	col_ur2 = colorama.Fore.WHITE
+#-------------------------------------
+
+print("")
+print("===================================")
+print("")
+print("Bitcoin/Ethereum wallet miner")
+print("What wallet type you want to check?")
+
+tt = input("'btc'/'eth'/'both'\n>")
+
+t = tt.lower()
+if t == "btc":
+	coin_co = "Bitcoin"
+	short_co = "0.0000 BTC"
+elif t == "eth":
+	coin_co =  "Ethereum"
+	short_co = "0.0000 ETH"
+elif t == "both":
+	coin_co = "Both"
+	short_co = "0.0000 balance"
+else:
+	print("Input not valid, defaulting to BTC.")
+	coin_co = "Bitcoin"
+	short_co = "0.0000 BTC"	
+
+print("")
+print("========================================================")
+print("")
+print("What is your wallet private key? (to send funds to)")
+print("If you only want the wallet key, leave this feild empty.")
+key = input(">")
 
 os.system('cls')
-
-valid_counter = 0
-
-
-
-def random_wallet(length, color, text):
-    letters = string.ascii_letters + string.digits
-    result_str = ''.join(random.choice(letters) for i in range(length))
-    print(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}WALLET ADRESS{Fore.RESET}   :   {color} 0x{result_str} {Fore.RESET}{color} {Fore.MAGENTA} [{Fore.RESET} {text} {Fore.MAGENTA}] {Fore.RESET}")
-
-
-def main():
-    global valid_counter
-
-    main_ascii = """
-                                             _ _ _     _ _     _      _____ _             
-                                            | | | |___| | |___| |_   |     |_|___ ___ ___ 
-                                            | | | | .'| | | -_|  _|  | | | | |   | -_|  _|                                                   
-                                            |_____|__,|_|_|___|_|    |_|_|_|_|_|_|___|_| 
-    """
-
-    random_ETH = random.uniform(0.5, 1)
-    print(f" {Fore.LIGHTMAGENTA_EX} {main_ascii} {Fore.RESET}")
-    wallet_adress = str(input(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}Your Wallet Adress  {Fore.RESET} :   "))
-
-    percentage_chance = 0.001 # The smaller the number the less likely you are to find a valid, ex : 0.01 = more chance than 0.000000000000001
-    counter = [1]
-
-    for i in counter:
-        counter.append(i + 1)
-        for a in range (1):
-            (random_wallet(42, Fore.RED, "NOT VALID"))
-            os.system(f"title Wallet checked : {i} / Valid found Wallet : {valid_counter}")
-
-        if random.random() < percentage_chance:
-            random_ETH = str(random_ETH)
-            (random_wallet(42, Fore.GREEN, "  VALID  "))
-            valid_counter += 1
-            os.system(f"title Wallet checked : {i} / Valid found Wallet : {valid_counter}")
-            time.sleep(0.01)
-            print(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}You mined{Fore.RESET}       :    {Fore.GREEN}{random_ETH[:-13]} ETH{Fore.RESET}")
-            time.sleep(0.5)
-            print(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}Transaction{Fore.RESET}     :    {Fore.GREEN}{random_ETH[:-13]} ETH{Fore.RESET}                                  {Fore.MAGENTA}[{Fore.RESET} ADDED TO YOUR WALLET {Fore.MAGENTA}] \n{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}Please wait...{Fore.RESET}")
-            time.sleep(3.5)
-            time.sleep(5)
-            asker = str(input(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}Do you want to relunch ? : [ Y / N ] : {Fore.RESET}"))
-
-            if asker.lower() == "y":
-                os.system('cls||clear')
-                main()
-            elif asker.lower() == "n":
-                print(f"{Fore.MAGENTA} [ - ] {Fore.RESET}{Fore.BLUE}See you soon !{Fore.RESET}")
-            time.sleep(3)
-            exit()
-
-main()
+print(col_ur  + " █     █░ ▄▄▄       ██▓     ██▓    ▓█████▄▄▄█████▓" + col_ur2 + "  ███▄ ▄███▓ ██▓ ███▄    █ ▓█████  ██▀███  ")
+print(col_ur  + "▓█░ █ ░█░▒████▄    ▓██▒    ▓██▒    ▓█   ▀▓  ██▒ ▓▒" + col_ur2 + " ▓██▒▀█▀ ██▒▓██▒ ██ ▀█   █ ▓█   ▀ ▓██ ▒ ██▒")
+print(col_ur  + "▒█░ █ ░█ ▒██  ▀█▄  ▒██░    ▒██░    ▒███  ▒ ▓██░ ▒░" + col_ur2 + " ▓██    ▓██░▒██▒▓██  ▀█ ██▒▒███   ▓██ ░▄█ ▒")
+print(col_ur  + "░█░ █ ░█ ░██▄▄▄▄██ ▒██░    ▒██░    ▒▓█  ▄░ ▓██▓ ░ " + col_ur2 + " ▒██    ▒██ ░██░▓██▒  ▐▌██▒▒▓█  ▄ ▒██▀▀█▄  ")
+print(col_ur  + "░░██▒██▓  ▓█   ▓██▒░██████▒░██████▒░▒████▒ ▒██▒ ░ " + col_ur2 + " ▒██▒   ░██▒░██░▒██░   ▓██░░▒████▒░██▓ ▒██▒")
+print(col_ur  + "░ ▓░▒ ▒   ▒▒   ▓▒█░░ ▒░▓  ░░ ▒░▓  ░░░ ▒░ ░ ▒ ░░   " + col_ur2 + " ░ ▒░   ░  ░░▓  ░ ▒░   ▒ ▒ ░░ ▒░ ░░ ▒▓ ░▒▓░")
+print(col_ur  + "  ▒ ░ ░    ▒   ▒▒ ░░ ░ ▒  ░░ ░ ▒  ░ ░ ░  ░   ░    " + col_ur2 + " ░  ░      ░ ▒ ░░ ░░   ░ ▒░ ░ ░  ░  ░▒ ░ ▒░")
+print(col_ur  + "  ░   ░    ░   ▒     ░ ░     ░ ░      ░    ░      " + col_ur2 + " ░      ░    ▒ ░   ░   ░ ░    ░     ░░   ░ ")
+print(col_ur  + "    ░          ░  ░    ░  ░    ░  ░   ░  ░        " + col_ur2 + "         ░    ░           ░    ░  ░   ░    ")
+time.sleep(1.25)
+while True:
+	print(col_ur  + coin_co + col_ur2 +" |0x"+g(64) + "| " + col_ur + short_co)
+	time.sleep(0.013)
