@@ -28,7 +28,7 @@ def print_slow(str):
 kk = input("What is your product key?\n>")
 k = kk.lower()
 
-if k == "killallwomen":
+if k == "women":
 	os.system('cls')
 	pass
 elif k == "dev":
