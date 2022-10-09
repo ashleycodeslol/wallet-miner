@@ -4,3 +4,5 @@
 # Requirements
      - Python 3.9
      - pip install colorama
+# Alternate Downloads
+     - .exe
